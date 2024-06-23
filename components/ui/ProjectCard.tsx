@@ -8,7 +8,7 @@ interface Props {
 
 const ProjectCard = ({ project }: Props) => {
   return (
-    <div className="rounded-md overflow-hidden bg-zinc-900 border relative z-20 border-none">
+    <div className="rounded-md overflow-hidden bg-gradient-to-br from-zinc-800 to-zinc-950 to-zinc- border relative z-20 border-none">
       <div className="h-40 w-100 h-50 z-10">
         <Image
           src={project?.image}

@@ -3,7 +3,6 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Boxes } from "../ui/background-boxes";
 import { GlitchHandle, useGlitch } from "react-powerglitch";
-import { Meteors } from "../ui/meteors";
 
 const Hero = () => {
   const glitch: GlitchHandle = useGlitch({

@@ -75,7 +75,11 @@ export const FloatingNav = ({
             <span className="hidden sm:block text-sm">{navItem.name}</span>
           </Link>
         ))}
-        <button className="border text-sm font-medium relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 rounded-xl">
+        <Link
+          href={"/assets/harshith_resume.pdf"}
+          target="_blank"
+          className="border text-sm font-medium relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 rounded-xl"
+        >
           <span className="block sm:hidden">
             <Image
               src={"/assets/navIcons/resume.svg"}
@@ -86,7 +90,7 @@ export const FloatingNav = ({
           </span>
           <span className="hidden sm:block text-sm">Download Resume</span>
           <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-green-500 to-transparent  h-px" />
-        </button>
+        </Link>
       </motion.div>
     </AnimatePresence>
   );
