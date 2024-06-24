@@ -8,7 +8,7 @@ type Experience = {
   duration: string;
   location: string;
   icon: string;
-  description: string;
+  description: string[];
   alias: string;
 };
 
@@ -18,7 +18,7 @@ interface Props {
 
 const ExperienceCard = ({ experience }: Props) => {
   return (
-    <div className="mb-10 text-white flex flex-col gap-4">
+    <div className=" mb-10 text-white flex flex-col gap-4">
       <div className="text-2xl max-md:text-lg font-bold text-zinc-100 tracking-wider">
         {experience?.title + " "}
         <div className="text-green-500 block">@{experience?.company}</div>
@@ -44,36 +44,18 @@ const ExperienceCard = ({ experience }: Props) => {
         {experience.location}
       </div>
       <ul className="flex flex-col gap-4 text-justify text-zinc-400 text-sm tracking-normal">
-        <li className="flex items-center gap-1">
-          <Image
-            src={"assets/arrow.svg"}
-            alt="arrow"
-            width={20}
-            height={20}
-            className="inline"
-          />
-          Developed and maintained multiple features for the company's flagship
-        </li>
-        <li className="flex items-center gap-1">
-          <Image
-            src={"assets/arrow.svg"}
-            alt="arrow"
-            width={20}
-            height={20}
-            className="inline"
-          />
-          Collaborated with cross-functional teams to identify and prioritize
-        </li>
-        <li className="flex items-center gap-1">
-          <Image
-            src={"assets/arrow.svg"}
-            alt="arrow"
-            width={20}
-            height={20}
-            className="inline"
-          />
-          Implemented automated testing and deployment scripts using Jenkins
-        </li>
+        {experience?.description.map((description, index) => (
+          <li key={index} className="flex items-center gap-1">
+            <Image
+              src={"assets/arrow.svg"}
+              alt="arrow"
+              width={20}
+              height={20}
+              className="inline"
+            />
+            {description}
+          </li>
+        ))}
       </ul>
     </div>
   );

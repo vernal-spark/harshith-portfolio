@@ -12,8 +12,11 @@ const experience = [
     duration: "Feb 2024 - Present",
     location: "Bengaluru, Karnataka, India",
     icon: "/assets/rattle.svg",
-    description:
-      "Ex irure dolore veniam ex velit non aute nisi labore ipsum occaecatdeserunt cupidatat aute. Enim cillum dolor et nulla sunt exercitationnon voluptate qui aliquip esse tempor. Ullamco ut sunt consectetursint qui qui do do qui do. Labore laborum culpa magna reprehenderit eavelit id esse adipisicing deserunt amet dolore. Ipsum occaecat veniamcommodo proident aliqua id ad deserunt dolor aliquip duis veniam sunt.",
+    description: [
+      "Collaborated with the adoption team to develop scalable feature requests.",
+      "Worked on a sandbox version of the Rattle app, owning the frontend.",
+      "Created a new homepage for the sandbox version of the app.",
+    ],
     alias: "Rattle",
   },
   {
@@ -22,8 +25,10 @@ const experience = [
     duration: "Jun 2023 - Sept 2023",
     location: "Remote, India",
     icon: "/assets/menubook.jpeg",
-    description:
-      "Ex irure dolore veniam ex velit non aute nisi labore ipsum occaecatdeserunt cupidatat aute. Enim cillum dolor et nulla sunt exercitationnon voluptate qui aliquip esse tempor. Ullamco ut sunt consectetursint qui qui do do qui do. Labore laborum culpa magna reprehenderit eavelit id esse adipisicing deserunt amet dolore. Ipsum occaecat veniamcommodo proident aliqua id ad deserunt dolor aliquip duis veniam sunt.",
+    description: [
+      "Developed scalable mobile apps using JavaScript, React Native, and Redux.",
+      "Contributed to the admin side for efficient app management.",
+    ],
     alias: "Menubook",
   },
   {
@@ -32,8 +37,10 @@ const experience = [
     duration: "Oct 2022 - Dec 2022",
     location: "Bengaluru, Karnataka, India",
     icon: "/assets/brane.svg",
-    description:
-      "Ex irure dolore veniam ex velit non aute nisi labore ipsum occaecatdeserunt cupidatat aute. Enim cillum dolor et nulla sunt exercitationnon voluptate qui aliquip esse tempor. Ullamco ut sunt consectetursint qui qui do do qui do. Labore laborum culpa magna reprehenderit eavelit id esse adipisicing deserunt amet dolore. Ipsum occaecat veniamcommodo proident aliqua id ad deserunt dolor aliquip duis veniam sunt.",
+    description: [
+      "Developed microservices with Spring Boot, MongoDB, Redis, and Kafka.",
+      "Enhanced data access operation performance using Redis for caching.",
+    ],
     alias: "Brane",
   },
   {
@@ -42,8 +49,11 @@ const experience = [
     duration: "Jun 2022 - Mar 2023",
     location: "Remote, India",
     icon: "/assets/crio.svg",
-    description:
-      "Ex irure dolore veniam ex velit non aute nisi labore ipsum occaecatdeserunt cupidatat aute. Enim cillum dolor et nulla sunt exercitationnon voluptate qui aliquip esse tempor. Ullamco ut sunt consectetursint qui qui do do qui do. Labore laborum culpa magna reprehenderit eavelit id esse adipisicing deserunt amet dolore. Ipsum occaecat veniamcommodo proident aliqua id ad deserunt dolor aliquip duis veniam sunt.",
+    description: [
+      "Completed Full Stack Program, gaining MERN stack proficiency.",
+      "Developed an e-commerce platform with authentication features.",
+      "Built a video curator platform with search and bookmarking.",
+    ],
     alias: "Crio",
   },
 ];
@@ -56,7 +66,7 @@ const Experience = () => {
     <Section id="experience" header="Experience">
       <div className="relative flex gap-10 max-md:flex-col">
         <div
-          className="flex flex-row md:flex-col justify-center gap-2"
+          className="flex flex-row md:flex-col gap-2"
           onMouseLeave={() => setHoveredIndex(null)}
         >
           {experience.map((item, index) => (

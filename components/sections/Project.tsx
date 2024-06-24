@@ -7,24 +7,24 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const projects = [
   {
-    name: "QKart",
-    image: "/assets/qkart.png",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, iure officiis rem debitis distinctio non nobis, magni pariatur aperiam velit incidunt quam enim necessitatibus repellat! Illo eaque id vero obcaecati.",
-    url: "https://qkart-frontend-harshit.netlify.app/",
-  },
-  {
     name: "XFlix",
     image: "/assets/xflix.png",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, iure officiis rem debitis distinctio non nobis, magni pariatur aperiam velit incidunt quam enim necessitatibus repellat! Illo eaque id vero obcaecati.",
+      "Created a video bookmark website with features for search, bookmarking, and categorization using ReactJS, NodeJS, ExpressJS, and MongoDB.",
     url: "https://graceful-sunflower-1683a0.netlify.app/",
+  },
+  {
+    name: "QKart",
+    image: "/assets/qkart.png",
+    description:
+      "Developed an e-commerce website with core functionalities like authentication, shopping cart, checkout, and a Stripe payment gateway using ReactJS, NodeJS, ExpressJS, and MongoDB.",
+    url: "https://qkart-frontend-harshit.netlify.app/",
   },
   {
     name: "QTrip",
     image: "/assets/qtrip.png",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, iure officiis rem debitis distinctio non nobis, magni pariatur aperiam velit incidunt quam enim necessitatibus repellat! Illo eaque id vero obcaecati.",
+      "Built a travel website with three different web pages from wireframe layout using HTML and CSS, and extensively used Bootstrap for responsive design.",
     url: "https://harshith-qtrip-dynamic.netlify.app/",
   },
 ];
@@ -40,7 +40,7 @@ const Projects = () => {
         {projects.map((project, index) => (
           <a
             key={index}
-            className="relative w-full max-w-72 rounded-md hover:cursor-pointer overflow-hidden p-4"
+            className="relative w-full max-w-84 max-md:max-w-88 h-full rounded-md hover:cursor-pointer overflow-hidden p-4"
             href={project?.url}
             target="_blank"
             onMouseEnter={() => setHoveredIndex(index)}
