@@ -1,18 +1,9 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/utils/cn";
 
 export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
-  const [isIOS, setIsIOS] = useState(false);
-
-  useEffect(() => {
-    const ua = navigator.userAgent;
-    if (/iPad|iPhone|iPod/.test(ua)) {
-      setIsIOS(true);
-    }
-  }, []);
-
   const rows = new Array(150).fill(1);
   const cols = new Array(100).fill(1);
   const colors = [
@@ -50,12 +41,10 @@ export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
             <motion.div
               key={`col` + j}
               className="w-16 h-8 border-r border-t border-slate-700 relative"
-              {...(!isIOS && {
-                whileHover: {
-                  backgroundColor: `var(${getRandomColor()})`,
-                  transition: { duration: 0 },
-                },
-              })}
+              whileHover={{
+                backgroundColor: `var(${getRandomColor()})`,
+                transition: { duration: 0 },
+              }}
               animate={{
                 transition: { duration: 2 },
               }}

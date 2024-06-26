@@ -1,18 +1,27 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Boxes } from "../ui/background-boxes";
 import { GlitchHandle, useGlitch } from "react-powerglitch";
+import { Boxes } from "../ui/background-boxes";
 
 const Hero: React.FC = () => {
+  const [isIOS, setIsIOS] = useState(false);
+
   const glitch: GlitchHandle = useGlitch({
     shake: false,
   });
 
+  useEffect(() => {
+    const ua = navigator.userAgent;
+    if (/iPad|iPhone|iPod/.test(ua)) {
+      setIsIOS(true);
+    }
+  }, []);
+
   return (
     <div className="relative w-full h-[100vh] flex flex-col items-center justify-center bg-black rounded-lg overflow-hidden">
       <div className="absolute inset-0 w-full h-full bg-black z-20 pointer-events-none [mask-image:radial-gradient(transparent,white)]" />
-      <Boxes />
+      {!isIOS && <Boxes />}
       <motion.div
         initial={{ opacity: 0.5, y: 100 }}
         whileInView={{ opacity: 1, y: 0 }}
