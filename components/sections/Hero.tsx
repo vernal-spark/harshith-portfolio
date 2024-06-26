@@ -30,7 +30,6 @@ const Hero: React.FC = () => {
             Software Engineer
           </span>
           <br /> based in India.
-          {navigator.userAgent}
         </p>
       </motion.div>
     </div>
