@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import ExperienceCard from "../ui/ExperienceCard";
 import Section from "../ui/PortfolioSection";
@@ -10,21 +10,41 @@ const Experience: React.FC = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
+  const handleCompanySelect = useCallback((index: number) => {
+    setSelectedIndex(index);
+  }, []);
+
+  const handleMouseEnter = useCallback((index: number) => {
+    setHoveredIndex(index);
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    setHoveredIndex(null);
+  }, []);
+
   return (
     <Section id="experience" header="Experience">
       <div className="relative flex gap-10 max-md:flex-col">
-        <div
+        <nav
           className="flex flex-row md:flex-col gap-2"
-          onMouseLeave={() => setHoveredIndex(null)}
+          onMouseLeave={handleMouseLeave}
+          role="tablist"
+          aria-label="Experience companies"
         >
           {experience.map(({ company, icon, alias }, index) => (
             <button
-              className={`px-4 py-2 text-zinc-300 relative z-20 min-w-28 max-md:min-w-1 max-md:w-fit w-full text-left rounded-md flex flex-row items-center group ${
-                index === selectedIndex && "bg-zinc-900"
+              className={`px-4 py-2 text-zinc-300 relative z-20 min-w-28 max-md:min-w-1 max-md:w-fit w-full text-left rounded-md flex flex-row items-center group transition-colors duration-200 ${
+                index === selectedIndex
+                  ? "bg-zinc-900 text-white"
+                  : "hover:text-white"
               }`}
-              key={company}
-              onClick={() => setSelectedIndex(index)}
-              onMouseEnter={() => setHoveredIndex(index)}
+              key={`company-${company}`}
+              onClick={() => handleCompanySelect(index)}
+              onMouseEnter={() => handleMouseEnter(index)}
+              role="tab"
+              aria-selected={index === selectedIndex}
+              aria-controls={`experience-panel-${index}`}
+              id={`company-tab-${index}`}
             >
               <AnimatePresence>
                 {hoveredIndex === index && (
@@ -40,12 +60,18 @@ const Experience: React.FC = () => {
                   />
                 )}
               </AnimatePresence>
-              <Logo source={icon} />
+              <Logo source={icon} alt={`${company} logo`} className="z-10" />
               <span className="max-md:hidden z-10 ml-2">{alias}</span>
             </button>
           ))}
+        </nav>
+        <div
+          role="tabpanel"
+          id={`experience-panel-${selectedIndex}`}
+          aria-labelledby={`company-tab-${selectedIndex}`}
+        >
+          <ExperienceCard experience={experience[selectedIndex]} />
         </div>
-        <ExperienceCard experience={experience[selectedIndex]} />
       </div>
     </Section>
   );

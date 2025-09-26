@@ -1,12 +1,15 @@
+import React from "react";
 import Experience from "@/components/sections/Experience";
 import Footer from "@/components/sections/Footer";
 import Hero from "@/components/sections/Hero";
 import Project from "@/components/sections/Project";
 import Technologies from "@/components/sections/Technologies";
 import { FloatingNav } from "@/components/ui/floating-navbar";
+import ErrorBoundary from "@/components/ui/ErrorBoundary";
+import { NavItem } from "@/types/types";
 
-export default function Home() {
-  const navItems = [
+export default function Home(): React.JSX.Element {
+  const navItems: NavItem[] = [
     {
       name: "Home",
       link: "/",
@@ -30,13 +33,15 @@ export default function Home() {
   ];
 
   return (
-    <main>
-      <FloatingNav navItems={navItems} className="w-100 h-100" />
-      <Hero />
-      <Experience />
-      <Project />
-      <Technologies />
-      <Footer />
-    </main>
+    <ErrorBoundary>
+      <main>
+        <FloatingNav navItems={navItems} className="w-100 h-100" />
+        <Hero />
+        <Experience />
+        <Project />
+        <Technologies />
+        <Footer />
+      </main>
+    </ErrorBoundary>
   );
 }

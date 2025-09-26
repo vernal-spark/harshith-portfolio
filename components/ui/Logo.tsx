@@ -1,15 +1,23 @@
 import Image from "next/image";
 import React from "react";
+import { LogoProps } from "@/types/types";
 
-const Logo = ({ source }: { source: string }) => {
+const Logo: React.FC<LogoProps> = ({
+  source,
+  alt = "Company logo",
+  className = "",
+}) => {
   return (
-    <div className="bg-red-500 p-1 h-6 w-6 flex items-center justify-center rounded-full bg-gradient-to-br from-zinc-800 to-zinc-950 z-10">
+    <div
+      className={`p-1 h-6 w-6 flex items-center justify-center rounded-full bg-gradient-to-br from-zinc-800 to-zinc-950 z-10 ${className}`}
+    >
       <Image
         src={source}
-        alt="logo"
+        alt={alt}
         width={15}
         height={15}
-        className="rounded-full"
+        className="rounded-full object-contain"
+        loading="lazy"
       />
     </div>
   );

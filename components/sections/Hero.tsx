@@ -1,25 +1,31 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { GlitchHandle, useGlitch } from "react-powerglitch";
 import { Boxes } from "../ui/background-boxes";
 
 const Hero: React.FC = () => {
-  const [isIOS, setIsIOS] = useState(false);
+  const [isIOS, setIsIOS] = useState<boolean>(false);
 
   const glitch: GlitchHandle = useGlitch({
     shake: false,
   });
 
-  useEffect(() => {
+  const isIOSDevice = useMemo(() => {
+    if (typeof window === "undefined") return false;
     const ua = navigator.userAgent;
-    if (/iPad|iPhone|iPod/.test(ua)) {
-      setIsIOS(true);
-    }
+    return /iPad|iPhone|iPod/.test(ua);
   }, []);
 
+  useEffect(() => {
+    setIsIOS(isIOSDevice);
+  }, [isIOSDevice]);
+
   return (
-    <div className="relative w-full h-[100vh] flex flex-col items-center justify-center bg-black rounded-lg overflow-hidden">
+    <section
+      className="relative w-full h-[100vh] flex flex-col items-center justify-center bg-black rounded-lg overflow-hidden"
+      aria-label="Hero section"
+    >
       <div className="absolute inset-0 w-full h-full bg-black z-20 pointer-events-none [mask-image:radial-gradient(transparent,white)]" />
       {!isIOS && <Boxes />}
       <motion.div
@@ -30,18 +36,23 @@ const Hero: React.FC = () => {
           duration: 0.8,
           ease: "easeInOut",
         }}
-        className="z-30"
+        viewport={{ once: true, margin: "-100px" }}
+        className="z-30 px-4"
       >
-        <p className="text-7xl max-md:text-4xl text-center text-white font-medium tracking-wide md:tracking-tight">
+        <h1 className="text-7xl max-md:text-4xl text-center text-white font-medium tracking-wide md:tracking-tight">
           Hi! I am Harshith,
           <br /> a{" "}
-          <span className="text-green-500" ref={glitch.ref}>
+          <span
+            className="text-green-500"
+            ref={glitch.ref}
+            aria-label="Software Engineer with glitch effect"
+          >
             Software Engineer
           </span>
           <br /> based in India.
-        </p>
+        </h1>
       </motion.div>
-    </div>
+    </section>
   );
 };
 

@@ -20,3 +20,34 @@ export interface Project {
   description: string;
   url: string;
 }
+
+export interface NavItem {
+  name: string;
+  link: string;
+  icon?: string;
+}
+
+export interface SectionProps {
+  id: string;
+  header?: string;
+  children: React.ReactNode;
+}
+
+export interface LogoProps {
+  source: string;
+  alt?: string;
+  className?: string;
+}
+
+export interface ExperienceCardProps {
+  experience: ExperienceItem;
+}
+
+export interface ProjectCardProps {
+  project: Project;
+}
+
+export interface FloatingNavProps {
+  navItems: NavItem[];
+  className?: string;
+}

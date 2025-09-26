@@ -15,7 +15,7 @@ export const experience: ExperienceItem[] = [
     alias: "Rattle",
   },
   {
-    title: "Fronted Developer Intern",
+    title: "Frontend Developer Intern",
     company: "Menubook",
     duration: "Jun 2023 - Sept 2023",
     location: "Remote, India",
