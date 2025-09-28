@@ -32,67 +32,65 @@ export const FloatingNav: React.FC<FloatingNavProps> = ({
   });
 
   return (
-    <AnimatePresence mode="wait">
-      <motion.nav
-        role="navigation"
-        aria-label="Main navigation"
-        initial={{
-          opacity: 1,
-          y: -100,
-        }}
-        animate={{
-          y: visible ? 0 : -100,
-          opacity: visible ? 1 : 0,
-        }}
-        transition={{
-          duration: 0.2,
-        }}
-        className={cn(
-          "flex max-w-fit fixed top-10 inset-x-0 mx-auto border border-transparent dark:border-white/[0.2] dark:bg-gray-900 bg-white shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] z-[5000] pr-2 pl-8 py-2 items-center justify-center space-x-4 px-5 rounded-xl",
-          className
-        )}
-      >
-        {navItems.map((navItem: NavItem, idx: number) => (
-          <Link
-            key={`nav-link-${idx}`}
-            href={navItem.link}
-            className={cn(
-              "relative dark:text-neutral-50 items-center flex space-x-1 text-neutral-600 dark:hover:text-neutral-300 hover:text-neutral-500 transition-colors duration-200"
-            )}
-            aria-label={`Navigate to ${navItem.name} section`}
-          >
-            <span className="block sm:hidden">
-              <Image
-                src={navItem.icon || ""}
-                alt={`${navItem.name} icon`}
-                width={20}
-                height={20}
-                className="w-5 h-5"
-              />
-            </span>
-            <span className="hidden sm:block text-sm">{navItem.name}</span>
-          </Link>
-        ))}
+    <motion.nav
+      role="navigation"
+      aria-label="Main navigation"
+      initial={{
+        opacity: 1,
+        y: -100,
+      }}
+      animate={{
+        y: visible ? 0 : -100,
+        opacity: visible ? 1 : 0,
+      }}
+      transition={{
+        duration: 0.2,
+      }}
+      className={cn(
+        "flex max-w-fit fixed top-10 inset-x-0 mx-auto glass-effect shadow-2xl shadow-black/20 z-[5000] pr-2 pl-8 py-3 items-center justify-center space-x-4 px-5 rounded-2xl backdrop-blur-xl",
+        className
+      )}
+    >
+      {navItems.map((navItem: NavItem, idx: number) => (
         <Link
-          href="/assets/harshith_resume.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="border text-sm font-medium relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors duration-200"
-          aria-label="Download resume PDF"
+          key={`nav-link-${idx}`}
+          href={navItem.link}
+          className={cn(
+            "relative text-white/80 items-center flex space-x-1 hover:text-white transition-all duration-300 px-3 py-2 rounded-lg hover:bg-white/10"
+          )}
+          aria-label={`Navigate to ${navItem.name} section`}
         >
           <span className="block sm:hidden">
             <Image
-              src="/assets/navIcons/resume.svg"
-              alt="Resume download icon"
+              src={navItem.icon || ""}
+              alt={`${navItem.name} icon`}
               width={20}
               height={20}
               className="w-5 h-5"
             />
           </span>
-          <span className="hidden sm:block text-sm">Download Resume</span>
-          <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-green-500 to-transparent h-px" />
+          <span className="hidden sm:block text-sm">{navItem.name}</span>
         </Link>
-      </motion.nav>
-    </AnimatePresence>
+      ))}
+      <Link
+        href="/assets/harshith_resume.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="bg-gradient-to-r from-green-500 to-emerald-600 text-white text-sm font-medium relative px-6 py-2 rounded-xl hover:from-green-600 hover:to-emerald-700 transition-all duration-300 shadow-lg hover:shadow-green-500/25"
+        aria-label="Download resume PDF"
+      >
+        <span className="block sm:hidden">
+          <Image
+            src="/assets/navIcons/resume.svg"
+            alt="Resume download icon"
+            width={20}
+            height={20}
+            className="w-5 h-5"
+          />
+        </span>
+        <span className="hidden sm:block text-sm">Download Resume</span>
+        <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-green-500 to-transparent h-px" />
+      </Link>
+    </motion.nav>
   );
 };

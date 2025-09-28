@@ -7,22 +7,32 @@ const Section: React.FC<SectionProps> = ({ id, header, children }) => {
   return (
     <motion.section
       id={id}
-      className="my-20 mx-40 max-xl:my-1 max-xl:mx-1 flex flex-col justify-center items-center"
-      initial={{ opacity: 0.5, y: 100 }}
+      className="relative py-24 px-8 max-xl:px-4 flex flex-col justify-center items-center"
+      initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{
         delay: 0.1,
         duration: 0.8,
-        ease: "easeInOut",
+        ease: "easeOut",
       }}
       viewport={{ once: true, margin: "-100px" }}
     >
       {header && (
-        <h2 className="text-white text-5xl max-md:text-3xl font-medium tracking-tight mb-8">
-          {header}
-        </h2>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-6xl max-md:text-4xl font-bold tracking-tight mb-4">
+            <span className="gradient-text">{header}</span>
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-green-500 to-emerald-600 mx-auto rounded-full" />
+        </motion.div>
       )}
-      <div className="py-10 px-20 max-lg:px-1 w-full">{children}</div>
+
+      <div className="w-full max-w-7xl mx-auto">{children}</div>
     </motion.section>
   );
 };

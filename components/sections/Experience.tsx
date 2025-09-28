@@ -4,6 +4,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import ExperienceCard from "../ui/ExperienceCard";
 import Section from "../ui/PortfolioSection";
 import Logo from "../ui/Logo";
+import { TracingBeam } from "../ui/TracingBeam";
+import TimelineCard from "../ui/TimelineCard";
 import { experience } from "@/constants/experience";
 
 const Experience: React.FC = () => {
@@ -24,54 +26,61 @@ const Experience: React.FC = () => {
 
   return (
     <Section id="experience" header="Experience">
-      <div className="relative flex gap-10 max-md:flex-col">
-        <nav
-          className="flex flex-row md:flex-col gap-2"
-          onMouseLeave={handleMouseLeave}
-          role="tablist"
-          aria-label="Experience companies"
-        >
-          {experience.map(({ company, icon, alias }, index) => (
-            <button
-              className={`px-4 py-2 text-zinc-300 relative z-20 min-w-28 max-md:min-w-1 max-md:w-fit w-full text-left rounded-md flex flex-row items-center group transition-colors duration-200 ${
-                index === selectedIndex
-                  ? "bg-zinc-900 text-white"
-                  : "hover:text-white"
-              }`}
-              key={`company-${company}`}
-              onClick={() => handleCompanySelect(index)}
-              onMouseEnter={() => handleMouseEnter(index)}
-              role="tab"
-              aria-selected={index === selectedIndex}
-              aria-controls={`experience-panel-${index}`}
-              id={`company-tab-${index}`}
-            >
-              <AnimatePresence>
-                {hoveredIndex === index && (
-                  <motion.span
-                    className="absolute inset-0 h-full w-full bg-zinc-900/[0.8] rounded-md"
-                    layoutId="hoverBackground"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1, transition: { duration: 0.15 } }}
-                    exit={{
-                      opacity: 0,
-                      transition: { duration: 0.15, delay: 0.2 },
-                    }}
-                  />
-                )}
-              </AnimatePresence>
-              <Logo source={icon} alt={`${company} logo`} className="z-10" />
-              <span className="max-md:hidden z-10 ml-2">{alias}</span>
-            </button>
-          ))}
-        </nav>
-        <div
-          role="tabpanel"
-          id={`experience-panel-${selectedIndex}`}
-          aria-labelledby={`company-tab-${selectedIndex}`}
+      <div className="relative">
+        {/* Mobile: Horizontal scroll tabs */}
+        <div className="md:hidden mb-8">
+          <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+            {experience.map(({ company, icon, alias }, index) => (
+              <motion.button
+                key={`mobile-company-${company}`}
+                className={`flex-shrink-0 px-4 py-3 rounded-xl flex items-center gap-3 transition-all duration-300 ${
+                  index === selectedIndex
+                    ? "bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg"
+                    : "bg-white/10 text-white/70 hover:bg-white/20 hover:text-white"
+                }`}
+                onClick={() => handleCompanySelect(index)}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Logo
+                  source={icon}
+                  alt={`${company} logo`}
+                  className="w-5 h-5"
+                />
+                <span className="text-sm font-medium whitespace-nowrap">
+                  {alias}
+                </span>
+              </motion.button>
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop: Tracing Beam Timeline */}
+        <div className="hidden md:block">
+          <TracingBeam>
+            <div className="max-w-4xl mx-auto">
+              {experience.map((exp, index) => (
+                <TimelineCard
+                  key={`timeline-${exp.company}`}
+                  experience={exp}
+                  index={index}
+                  isActive={index === selectedIndex}
+                  onClick={() => handleCompanySelect(index)}
+                />
+              ))}
+            </div>
+          </TracingBeam>
+        </div>
+
+        {/* Mobile: Experience content */}
+        <motion.div
+          key={`mobile-${selectedIndex}`}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+          className="md:hidden"
         >
           <ExperienceCard experience={experience[selectedIndex]} />
-        </div>
+        </motion.div>
       </div>
     </Section>
   );
