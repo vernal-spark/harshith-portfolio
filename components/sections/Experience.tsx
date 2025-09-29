@@ -6,23 +6,36 @@ import Section from "../ui/PortfolioSection";
 import Logo from "../ui/Logo";
 import { TracingBeam } from "../ui/TracingBeam";
 import TimelineCard from "../ui/TimelineCard";
-import { experience } from "@/constants/experience";
+import { useData } from "@/components/providers/DataProvider";
 
 const Experience: React.FC = () => {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const { experiences, loading, error } = useData();
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
   const handleCompanySelect = useCallback((index: number) => {
     setSelectedIndex(index);
   }, []);
 
-  const handleMouseEnter = useCallback((index: number) => {
-    setHoveredIndex(index);
-  }, []);
+  if (loading) {
+    return (
+      <Section id="experience" header="Experience">
+        <div className="flex justify-center items-center py-16">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500"></div>
+        </div>
+      </Section>
+    );
+  }
 
-  const handleMouseLeave = useCallback(() => {
-    setHoveredIndex(null);
-  }, []);
+  if (error) {
+    return (
+      <Section id="experience" header="Experience">
+        <div className="text-center py-16">
+          <p className="text-red-400 mb-4">Failed to load experience data</p>
+          <p className="text-white/60">Using fallback data</p>
+        </div>
+      </Section>
+    );
+  }
 
   return (
     <Section id="experience" header="Experience">
@@ -30,7 +43,7 @@ const Experience: React.FC = () => {
         {/* Mobile: Horizontal scroll tabs */}
         <div className="md:hidden mb-8">
           <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
-            {experience.map(({ company, icon, alias }, index) => (
+            {experiences.map(({ company, icon, alias }, index) => (
               <motion.button
                 key={`mobile-company-${company}`}
                 className={`flex-shrink-0 px-4 py-3 rounded-xl flex items-center gap-3 transition-all duration-300 ${
@@ -58,7 +71,7 @@ const Experience: React.FC = () => {
         <div className="hidden md:block">
           <TracingBeam>
             <div className="max-w-4xl mx-auto">
-              {experience.map((exp, index) => (
+              {experiences.map((exp, index) => (
                 <TimelineCard
                   key={`timeline-${exp.company}`}
                   experience={exp}
@@ -79,7 +92,7 @@ const Experience: React.FC = () => {
           transition={{ duration: 0.3, ease: "easeOut" }}
           className="md:hidden"
         >
-          <ExperienceCard experience={experience[selectedIndex]} />
+          <ExperienceCard experience={experiences[selectedIndex]} />
         </motion.div>
       </div>
     </Section>

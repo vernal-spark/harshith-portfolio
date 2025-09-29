@@ -129,12 +129,6 @@ const Hero: React.FC = () => {
           <br />
           <span className="text-white/70">that bring ideas to</span>{" "}
           <span className="gradient-text font-bold">life</span>
-          <motion.div
-            className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-green-500 to-emerald-600"
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ delay: 1.5, duration: 0.8 }}
-          />
         </motion.div>
 
         {/* Location and tagline */}
@@ -192,6 +186,12 @@ const Hero: React.FC = () => {
             />
           </motion.a>
         </motion.div>
+        <motion.div
+          className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-green-500 to-emerald-600"
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ delay: 1.5, duration: 0.8 }}
+        />
       </div>
 
       {/* Scroll indicator */}

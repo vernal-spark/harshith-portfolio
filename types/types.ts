@@ -51,3 +51,8 @@ export interface FloatingNavProps {
   navItems: NavItem[];
   className?: string;
 }
+
+export interface Technology {
+  name: string;
+  icon: string;
+}

@@ -6,6 +6,7 @@ import Project from "@/components/sections/Project";
 import Technologies from "@/components/sections/Technologies";
 import { FloatingNav } from "@/components/ui/floating-navbar";
 import ErrorBoundary from "@/components/ui/ErrorBoundary";
+import { DataProvider } from "@/components/providers/DataProvider";
 import { NavItem } from "@/types/types";
 
 export default function Home(): React.JSX.Element {
@@ -34,14 +35,16 @@ export default function Home(): React.JSX.Element {
 
   return (
     <ErrorBoundary>
-      <main>
-        <FloatingNav navItems={navItems} className="w-100 h-100" />
-        <Hero />
-        <Experience />
-        <Project />
-        <Technologies />
-        <Footer />
-      </main>
+      <DataProvider>
+        <main>
+          <FloatingNav navItems={navItems} className="w-100 h-100" />
+          <Hero />
+          <Experience />
+          <Project />
+          <Technologies />
+          <Footer />
+        </main>
+      </DataProvider>
     </ErrorBoundary>
   );
 }
