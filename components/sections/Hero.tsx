@@ -93,7 +93,7 @@ const Hero: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.6, duration: 0.8 }}
           >
-            Hi, I'm
+            Hi, I&apos;m
           </motion.span>
           <motion.span
             className="block gradient-text font-extrabold relative"
@@ -179,7 +179,7 @@ const Hero: React.FC = () => {
             whileTap={{ scale: 0.95 }}
             className="group px-8 py-4 glass-effect text-white font-semibold rounded-full border border-white/20 hover:border-green-500/50 transition-all duration-300 relative overflow-hidden"
           >
-            <span className="relative z-10">Let's Connect</span>
+            <span className="relative z-10">Let&apos;s Connect</span>
             <motion.div
               className="absolute inset-0 bg-gradient-to-r from-green-500/10 to-emerald-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
               initial={false}

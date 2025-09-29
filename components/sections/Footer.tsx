@@ -18,10 +18,10 @@ const Footer: React.FC = () => {
             className="text-center"
           >
             <h3 className="text-2xl font-bold text-white mb-4">
-              Let's <span className="gradient-text">Connect</span>
+              Let&apos;s <span className="gradient-text">Connect</span>
             </h3>
             <p className="text-white/70 text-lg mb-8 max-w-2xl mx-auto">
-              I'm always open to discussing new opportunities, creative
+              I&apos;m always open to discussing new opportunities, creative
               projects, or just having a chat about technology.
             </p>
 

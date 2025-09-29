@@ -32,7 +32,7 @@ class ErrorBoundary extends Component<Props, State> {
             <div className="text-center p-8">
               <h2 className="text-2xl font-bold mb-4">Something went wrong</h2>
               <p className="text-gray-400 mb-4">
-                We're sorry, but something unexpected happened.
+                We&apos;re sorry, but something unexpected happened.
               </p>
               <button
                 onClick={() => window.location.reload()}
